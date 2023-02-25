@@ -19,6 +19,9 @@ function TodoList() {
     <div>
       <h1>What's the Plan for Today?</h1>
       <TodoForm onSubmit={addTodo} />
+      {todos.map((todo, index) => {
+        return <p key={index}>{todo.text}</p>;
+      })}
     </div>
   );
 }
