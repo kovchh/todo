@@ -16,7 +16,7 @@ body {
 .todo-app {
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: center;
   width: 520px;
   min-height: 600px;
   background: #161a2b;
@@ -144,4 +144,155 @@ h1 {
 
 .edit-icon {
   color: #fff;
+}
+
+.register-form-container {
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f3f3f3;
+  border-radius: 5px;
+}
+
+.register-form-title {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.register-form-label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.register-form-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.register-form-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #8230ff;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background 0.3s ease;
+}
+
+.register-form-button:hover {
+  background-color: rgba(130, 48, 255, 0.8);
+}
+
+.register-form-error {
+  color: #fff;
+}
+
+.login-form-container,
+.register-form-container {
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.login-form-title,
+.register-form-title {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.login-form,
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form-label,
+.register-form-label {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.login-form-input,
+.register-form-input {
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+.login-form-button,
+.register-form-button {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.login-form-error,
+.register-form-error {
+  margin-top: 10px;
+  color: #f00;
+  font-size: 14px;
+  text-align: center;
+}
+
+.logout-container {
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.logout-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.logout-message {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.logout-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #0056b3;
+}
+
+.logout-link {
+  font-weight: 600;
+  color: linear-gradient(
+    90deg,
+    rgba(20, 159, 255, 1) 0%,
+    rgba(17, 122, 255, 1) 100%
+  );
+  padding: 16px 22px;
+  /* Add any additional styles as needed */
+}
+.register-form-login-link,
+.login-form-register-link {
+  margin-top: 10px;
 }
