@@ -14,10 +14,16 @@ import useAuth from "./hooks/useAuth";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 
+// TODO: add firestore usage
 // TODO: on reload page faild auth
 // TODO: root path localhost:3000/todo change to localhost:3000
-// TODO: add firestore usage
 // TODO: add .env file, add to this file firebase confige properties
+// TODO: update readme.md
+// TODO: add redux
+// TODO: probably add TS
+// TODO: add sass
+// TODO: expand prettier and eslint
+// TODO: add sorting, filtering
 
 function App() {
   const user = useAuth();

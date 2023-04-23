@@ -1,10 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TodoForm from "./TodoForm";
 import Todo from "./Todo";
+import { firestore } from "../firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 function TodoList() {
   const [todos, setTodos] = useState([]);
 
+  useEffect(() => {
+    // TODO: refactor fetch
+    const fetchTodos = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(firestore, "todos"));
+        const todosData = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setTodos(todosData);
+        console.log(todos, todosData);
+      } catch (error) {
+        console.error("Error fetching collection: ", error);
+      }
+    };
+
+    fetchTodos();
+  }, []);
   const addTodo = (todo) => {
     if (!todo.text || /^\s*$/.test(todo.text)) {
       return;
