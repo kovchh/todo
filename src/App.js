@@ -14,6 +14,8 @@ import useAuth from "./hooks/useAuth";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 
+// TODO: add complete status change firebase
+// TODO: add updated todo to firebase
 // TODO: add firestore usage
 // TODO: on reload page faild auth
 // TODO: root path localhost:3000/todo change to localhost:3000

@@ -31,6 +31,7 @@ function TodoList() {
 
     fetchTodos();
   }, []);
+
   const addTodo = async (todo) => {
     if (!todo.text || /^\s*$/.test(todo.text)) {
       return;
