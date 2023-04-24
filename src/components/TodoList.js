@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import TodoForm from "./TodoForm";
 import Todo from "./Todo";
 import { firestore } from "../firebase";
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 
 function TodoList() {
   const [todos, setTodos] = useState([]);
@@ -54,9 +60,15 @@ function TodoList() {
     );
   };
 
-  const removeTodo = (id) => {
-    const removeArr = [...todos].filter((todo) => todo.id !== id);
-    setTodos(removeArr);
+  const removeTodo = async (id) => {
+    try {
+      const docRef = doc(firestore, "todos", id);
+      await deleteDoc(docRef);
+      setTodos(todos.filter((todo) => todo.id !== id));
+      console.log("Document deleted with ID: ", id);
+    } catch (error) {
+      console.error("Error deleting document: ", error);
+    }
   };
 
   const completeTodo = (id) => {
