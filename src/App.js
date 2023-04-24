@@ -24,6 +24,7 @@ import Logout from "./components/Logout";
 // TODO: add sass
 // TODO: expand prettier and eslint
 // TODO: add sorting, filtering
+// TODO: add code sandbox setup
 
 function App() {
   const user = useAuth();

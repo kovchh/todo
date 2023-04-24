@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import TodoForm from "./TodoForm";
 import Todo from "./Todo";
 import { firestore } from "../firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, addDoc } from "firebase/firestore";
 
 function TodoList() {
   const [todos, setTodos] = useState([]);
@@ -25,15 +25,24 @@ function TodoList() {
 
     fetchTodos();
   }, []);
-  const addTodo = (todo) => {
+  const addTodo = async (todo) => {
     if (!todo.text || /^\s*$/.test(todo.text)) {
       return;
     }
+    console.log(todo);
 
-    const newTodos = [todo, ...todos];
-
-    setTodos(newTodos);
-    console.log(...todos);
+    // Create a new document in the "todos" collection with the todo object
+    try {
+      const docRef = await addDoc(collection(firestore, "todos"), {
+        text: todo.text,
+        isComplete: false,
+      });
+      // Update the local state with the newly created todo's ID
+      setTodos((prev) => [{ id: docRef.id, ...todo }, ...prev]);
+      console.log("Document written with ID: ", docRef.id);
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
   };
 
   const updateTodo = (todoId, newValue) => {
