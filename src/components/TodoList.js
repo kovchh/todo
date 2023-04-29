@@ -8,6 +8,7 @@ import {
   addDoc,
   deleteDoc,
   doc,
+  updateDoc,
 } from "firebase/firestore";
 
 function TodoList() {
@@ -36,7 +37,6 @@ function TodoList() {
     if (!todo.text || /^\s*$/.test(todo.text)) {
       return;
     }
-    console.log(todo);
 
     // Create a new document in the "todos" collection with the todo object
     try {
@@ -52,15 +52,6 @@ function TodoList() {
     }
   };
 
-  const updateTodo = (todoId, newValue) => {
-    if (!newValue.text || /^\s*$/.test(newValue.text)) {
-      return;
-    }
-    setTodos((prev) =>
-      prev.map((item) => (item.id === todoId ? newValue : item))
-    );
-  };
-
   const removeTodo = async (id) => {
     try {
       const docRef = doc(firestore, "todos", id);
@@ -72,14 +63,45 @@ function TodoList() {
     }
   };
 
-  const completeTodo = (id) => {
-    let updatesTodos = todos.map((todo) => {
-      if (todo.id === id) {
-        todo.isComplete = !todo.isComplete;
-      }
-      return todo;
-    });
-    setTodos(updatesTodos);
+  const updateTodo = async (todoId, newValue) => {
+    // Check if the new value object has a valid 'text' property
+    if (!newValue.text || /^\s*$/.test(newValue.text)) {
+      return;
+    }
+
+    try {
+      const docRef = doc(firestore, "todos", todoId);
+      await updateDoc(docRef, {
+        text: newValue.text,
+      });
+
+      setTodos((prev) =>
+        prev.map((item) =>
+          item.id === todoId ? { ...item, ...newValue } : item
+        )
+      );
+      console.log("Document updated with ID: ", docRef.id);
+    } catch (error) {
+      console.error("Error updating document: ", error);
+    }
+  };
+
+  const completeTodo = async (todoId, isComplete) => {
+    try {
+      const docRef = doc(firestore, "todos", todoId);
+      await updateDoc(docRef, {
+        isComplete: isComplete,
+      });
+
+      setTodos((prev) =>
+        prev.map((item) =>
+          item.id === todoId ? { ...item, isComplete: isComplete } : item
+        )
+      );
+      console.log("Document updated with ID: ", docRef.id);
+    } catch (error) {
+      console.error("Error updating document: ", error);
+    }
   };
 
   return (
