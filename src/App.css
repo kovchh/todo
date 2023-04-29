@@ -104,6 +104,7 @@ h1 {
   padding: 16px;
   border-radius: 5px;
   width: 90%;
+  cursor: pointer;
 }
 
 .todo-row:nth-child(4n + 1) {
